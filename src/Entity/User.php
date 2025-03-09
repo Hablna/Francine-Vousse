@@ -45,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $prenom = null;
 
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $civility = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -164,6 +167,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(?string $prenom): static
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getCivility(): ?string
+    {
+        return $this->civility;
+    }
+
+    public function setCivility(?string $civility): static
+    {
+        $this->civility = $civility;
 
         return $this;
     }
