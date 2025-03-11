@@ -3,18 +3,78 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {% include'partials/_header.html.twig' %}
+    <header class="bg-opacity-50 backdrop-blur-lg bg-blue-600 text-white w-full z-10 fixed top-0">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex shrink-0 items-center">
+                <img src="{{ asset ('images/logo.png') }}" alt="logo" class="h-10 w-auto">
+            </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <nav class="space-x-4">
+                <a href="#offre" class="hover:text-gray-300">Offres d'accompagnements</a>
+                <a href="#annonce" class="hover:text-gray-300">Créer une annonce</a>
+            </nav>
+            <div>
+                <img src="{{ asset ('images/user.png') }}" alt="user" class="h-8 w-auto">
+            </div>
+        </div>
+    </header>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/habib/code/covoit/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/home/habib/code/covoit/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r mt-10 from-blue-500 to-indigo-600 text-white py-16 px-6 text-center ">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre site web</h1>
+            <p class="text-xl mb-8">Ici, les offres de covoiturage et de copiétonnage </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="offre" class="py-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl font-semibold mb-12">Les offres d'accompagnements</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-xl font-semibold mb-4">spectacle 1</h3>
+                    <p>ce spectacle nananiii nananaaa.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-xl font-semibold mb-4">spectacle 2</h3>
+                    <p>ce spectacle nananiii nananaaa.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-xl font-semibold mb-4">Spectacle 3</h3>
+                    <p>ce spectacle nananiii nananaaa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section annonce -->
+    <section id="annonce" class="bg-gray-50 py-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl font-semibold mb-6">Annonce</h2>
+            <p class="text-xl max-w-3xl mx-auto mb-8">Francisse Vasse est imaginaire</p>
+            <a href="#contact"
+               class="bg-blue-600 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-700 transition">Nous
+                Contacter</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6 bg-blue-600 text-white text-center">
+        <h2 class="text-3xl font-semibold mb-4">Contactez-Nous</h2>
+        <p class="text-xl mb-8">Si vous avez des questions ou si vous souhaitez en savoir plus sur nos services,
+            contactez-nous dès aujourd'hui.</p>
+        <a href="mailto:contact@monsite.com"
+           class="bg-white text-blue-600 py-2 px-6 rounded-full font-semibold hover:bg-gray-100 transition">Envoyer un
+            Email</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4 text-center">
+        <p>&copy; 2023 Mon Site. Tous droits réservés.</p>
+    </footer>
 {% endblock %}
