@@ -11,9 +11,6 @@ Encore
     // Activer le traitement de SCSS (si nécessaire)
     .enableSassLoader()
 
-    // Ajouter la gestion des images et autres ressources
-    .enableImageLoader()
-
     // Générer un fichier manifest pour lier les assets
     .enableVersioning()
     .enableSourceMaps(!Encore.isProduction())

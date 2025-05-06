@@ -4,34 +4,6 @@
 
 {% block body %}
     {% include'partials/_header.html.twig' %}
-    <header class="bg-opacity-50 backdrop-blur-lg bg-blue-600 text-white w-full z-10 fixed top-0">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex shrink-0 items-center">
-                <img src="{{ asset ('images/logo.png') }}" alt="logo" class="h-10 w-auto">
-            </div>
-
-            <nav class="space-x-4">
-                <a href="#offre" class="hover:text-gray-300">Offres d'accompagnements</a>
-                <a href="#annonce" class="hover:text-gray-300">Créer une annonce</a>
-            </nav>
-            <div class="relative inline-block text-left">
-                <div>
-                    <img src="{{ asset('images/user.png') }}" alt="user" class="h-8 w-auto cursor-pointer" id="profile-logo">
-                </div>
-                <div id="dropdown-menu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        {% if app.user %}
-                            <a href="{{ path('app_account') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Aperçu du compte</a>
-                            <a href="{{ path('app_logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Se déconnecter</a>
-                        {% else %}
-                            <a href="{{ path('app_register') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">S'inscrire</a>
-                            <a href="{{ path('app_login') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Se connecter</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <!-- Hero Section -->
     <section class="bg-gradient-to-r mt-10 from-blue-500 to-indigo-600 text-white py-16 px-6 text-center ">
@@ -87,19 +59,5 @@
     </section>
 
     <!-- Footer -->
-    {% include'partials/_footer.html.twig' %}
-
-    <script>
-        document.getElementById('profile-logo').addEventListener('click', function() {
-            var dropdownMenu = document.getElementById('dropdown-menu');
-            dropdownMenu.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', function(event) {
-            var isClickInside = document.getElementById('profile-logo').contains(event.target) || document.getElementById('dropdown-menu').contains(event.target);
-            if (!isClickInside) {
-                document.getElementById('dropdown-menu').classList.add('hidden');
-            }
-        });
-    </script>
+    {% include 'partials/_footer.html.twig'%}
 {% endblock %}
