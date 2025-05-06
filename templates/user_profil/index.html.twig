@@ -3,18 +3,110 @@
 {% block title %}Hello UserProfilController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="bg-gray-100">
+        <div class="container mx-auto py-8">
+            <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
+                <div class="col-span-4 sm:col-span-3">
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <div class="flex flex-col items-center">
+                            <img src="https://randomuser.me/api/portraits/men/94.jpg" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/habib/code/covoit/src/Controller/UserProfilController.php</code></li>
-        <li>Your template at <code>/home/habib/code/covoit/templates/user_profil/index.html.twig</code></li>
-    </ul>
-</div>
+                            </img>
+                            <h1 class="text-xl ">{{ civility }} <strong>{{ name }}</strong> {{ firstname }}</h1>
+                            <p class="text-gray-700">{{ username }}</p>
+                            <div class="mt-6 flex flex-wrap gap-4 justify-center">
+                                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Contact</a>
+                                <a href="#" class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Resume</a>
+                            </div>
+                        </div>
+                        <hr class="my-6 border-t border-gray-300">
+
+                    </div>
+                </div>
+
+                <!-- Onglets -->
+                <div class="col-span-9">
+                    <div class="mb-6 border-b border-gray-200">
+                        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500">
+                            <li class="me-2">
+                                <button onclick="openTab(event, 'historique-tab')" id="default-tab"
+                                        class="inline-block px-4 py-2 text-white bg-blue-600 rounded-t-lg">Historique</button>
+                            </li>
+                            <li class="me-2">
+                                <button onclick="openTab(event, 'parametres-tab')"
+                                        class="inline-block px-4 py-2 rounded-t-lg hover:bg-gray-100">Paramètres</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- historique -->
+                    <div class="col-span-4 sm:col-span-9 tab-content" id="historique-tab">
+                        <div class="bg-white shadow rounded-lg p-6">
+
+                            <h2 class="text-xl font-semibold text-center mt-3 -mb-2">
+                                Historiques de covoiturage
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                <!-- Colonne : Effectués -->
+                                <div class="flex flex-col items-center">
+                                    <h3 class="font-bold mt-6 mb-4">Covoiturages effectués</h3>
+                                    <div class="mb-6 ">
+                                        <span class="text-gray-700 font-bold">Web Developer</span>
+
+                                        <p class="mt-2">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
+                                            .
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--<div class="w-px bg-gray-300 h-full"></div>-->
+
+                                <!-- Colonne : À venir -->
+                                <div class="flex flex-col items-center">
+                                    <h3 class="font-bold mt-6 mb-4">Covoiturages à venir</h3>
+                                    <div class="mb-6">
+                                        <span class="text-gray-700 font-bold">Web Developer</span>
+                                        <p class="mt-2">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
+                                            tortor ullamcorper
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paramètres -->
+                    <div id="parametres-tab" class="hidden tab-content col-span-4 sm:col-span-9">
+                        <div class="bg-white shadow rounded-lg p-6">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function openTab(evt, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            const tabs = evt.currentTarget.parentElement.parentElement.querySelectorAll('button');
+
+            contents.forEach(c => c.classList.add('hidden'));
+            tabs.forEach(t => t.classList.remove('bg-blue-600', 'text-white'));
+
+            document.getElementById(tabId).classList.remove('hidden');
+            evt.currentTarget.classList.add('bg-blue-600', 'text-white');
+        }
+
+        // Onglet par défaut au chargement
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById("default-tab").click();
+        });
+    </script>
+
 {% endblock %}
