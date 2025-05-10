@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,6 +19,16 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
+            //civilité en forme de choix M. ou Mme
+            ->add('civility', ChoiceType::class, [
+                'choices' => [
+                    'M.' => 'M.',
+                    'Mme' => 'Mme',
+                ],
+                'placeholder' => 'Choisissez',
+                'required' => true,
+            ])
             ->add('prenom')
             ->add('name')
             ->add('username')

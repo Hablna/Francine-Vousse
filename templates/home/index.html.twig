@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    {% include'partials/_header.html.twig' %}
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r mt-10 from-blue-500 to-indigo-600 text-white py-16 px-6 text-center ">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre site web</h1>
+            <p class="text-xl mb-8">Ici, les offres de covoiturage et de copiétonnage </p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="offre" class="py-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl font-semibold mb-12">Les offres d'accompagnements</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-xl font-semibold mb-4">spectacle 1</h3>
+                    <p>ce spectacle nananiii nananaaa.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-xl font-semibold mb-4">spectacle 2</h3>
+                    <p>ce spectacle nananiii nananaaa.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <h3 class="text-xl font-semibold mb-4">Spectacle 3</h3>
+                    <p>ce spectacle nananiii nananaaa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section annonce -->
+    <section id="annonce" class="bg-gray-50 py-16 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl font-semibold mb-6">Annonce</h2>
+            <p class="text-xl max-w-3xl mx-auto mb-8">Francisse Vasse est imaginaire</p>
+            <a href="#contact"
+               class="bg-blue-600 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-700 transition">Nous
+                Contacter</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6 bg-blue-600 text-white text-center">
+        <h2 class="text-3xl font-semibold mb-4">Contactez-Nous</h2>
+        <p class="text-xl mb-8">Si vous avez des questions ou si vous souhaitez en savoir plus sur nos services,
+            contactez-nous dès aujourd'hui.</p>
+        <a href="mailto:contact@monsite.com"
+           class="bg-white text-blue-600 py-2 px-6 rounded-full font-semibold hover:bg-gray-100 transition">Envoyer un
+            Email</a>
+    </section>
+
+    <!-- Footer -->
+    {% include 'partials/_footer.html.twig'%}
+{% endblock %}
