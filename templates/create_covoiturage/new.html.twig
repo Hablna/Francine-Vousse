@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}offre de covoiturage{% endblock %}
+    {%  block body %}
+    {% if planifications is defined %}
+        {% for planification in planifications %}
+            {{ planification.lieu }}<br>
+            {{ planification.dateSpectacle|date('d/m/Y H:i') }}<br><br>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
