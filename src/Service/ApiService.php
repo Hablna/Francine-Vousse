@@ -32,7 +32,7 @@ class ApiService
 
     public function checkBillet(int $idBillet, int $idSpectacle): bool
     {
-        $response = $this->client->request('POST', 'http://adresse-api/api/Spectacles/CheckBillet', [
+        $response = $this->client->request('POST', 'http://172.16.124.35/api/Spectacles/CheckBillet', [
             'json' => [
                 'idBillet' => $idBillet,
                 'idSpectacle' => $idSpectacle,
