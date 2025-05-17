@@ -1,12 +1,12 @@
 <header class="bg-opacity-50 backdrop-blur-lg bg-blue-600 text-white w-full z-10 fixed top-0">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div class="flex shrink-0 items-center">
-            <img src="{{ asset ('images/logo.png') }}" alt="logo" class="h-10 w-auto">
+            <a href="{{ path('app_home') }}"><img src="{{ asset ('images/logo.png') }}" alt="logo" class="h-10 w-auto"></a>
         </div>
 
         <nav class="space-x-4">
-            <a href="#offre" class="hover:text-gray-300">Offres d'accompagnements</a>
-            <a href="#annonce" class="hover:text-gray-300">Créer une annonce</a>
+            <a href="{{ path('app_create_covoiturage') }}" class="hover:text-gray-300">Publier une offre</a>
+            <a href="#{{ path("app_home") }}" class="hover:text-gray-300"> Rejoindre</a>
         </nav>
         <div>
             <img src="{{ asset ('images/user.png') }}" alt="user" class="h-8 w-auto">

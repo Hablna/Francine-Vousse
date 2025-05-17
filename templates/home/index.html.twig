@@ -17,22 +17,26 @@
     <section id="offre" class="py-16 px-6">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-3xl font-semibold mb-12">Les offres d'accompagnements</h2>
+            <!-- message de succès -->
+            {% if app.session.flashBag.has('success') %}
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4 mx-auto max-w-md"
+                     role="alert">
+                    <strong class="font-bold">Succès!</strong>
+                    <span class="block sm:inline">{{ app.session.flashBag.get('success')[0] }}</span>
+                </div>
+            {% endif %}
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <h3 class="text-xl font-semibold mb-4">spectacle 1</h3>
-                    <p>ce spectacle nananiii nananaaa.</p>
-                </div>
-                <!-- Service 2 -->
-                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <h3 class="text-xl font-semibold mb-4">spectacle 2</h3>
-                    <p>ce spectacle nananiii nananaaa.</p>
-                </div>
-                <!-- Service 3 -->
-                <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
-                    <h3 class="text-xl font-semibold mb-4">Spectacle 3</h3>
-                    <p>ce spectacle nananiii nananaaa.</p>
-                </div>
+               <!-- Affichage des offres -->
+                {% for offre in offres %}
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
+                        <h3 class="text-xl font-semibold mb-4">{{ offre.TitreSpectacle }}</h3>
+                        <div class="mt-6 mb-4 flex flex-wrap gap-4 justify-center">
+                            <p>Date : {{ offre.horaire|date('d/m/Y H:i') }} </p>
+                            <p>Depart : <strong>{{ offre.pointDepart }}</strong></p>
+                        </div>
+                        <p><a href="#INSCRIRE" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"> s'inscrire</a></p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </section>

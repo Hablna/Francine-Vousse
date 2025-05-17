@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -50,6 +52,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $profilePicture = null;
+
+    /**
+     * @var Collection<int, Offre>
+     */
+    #[ORM\OneToMany(targetEntity: Offre::class, mappedBy: 'id_user')]
+    private Collection $offres;
+
+    public function __construct()
+    {
+        $this->offres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -194,6 +207,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setProfilePicture(?string $profilePicture): static
     {
         $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Offre>
+     */
+    public function getOffres(): Collection
+    {
+        return $this->offres;
+    }
+
+    public function addOffre(Offre $offre): static
+    {
+        if (!$this->offres->contains($offre)) {
+            $this->offres->add($offre);
+            $offre->setIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffre(Offre $offre): static
+    {
+        if ($this->offres->removeElement($offre)) {
+            // set the owning side to null (unless already changed)
+            if ($offre->getIdUser() === $this) {
+                $offre->setIdUser(null);
+            }
+        }
 
         return $this;
     }
