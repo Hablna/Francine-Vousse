@@ -1,0 +1,11 @@
+{% extends'base.html.twig' %}
+
+{% block body %}
+
+    <ul class="space-y-4">
+        {% for convo in conversations %}
+            <h1>contenu: {{ convo.contenu }}</h1>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
