@@ -6,8 +6,10 @@
 
         <nav class="space-x-4">
             <a href="{{ path('app_create_covoiturage') }}" class="hover:text-gray-300">Publier une offre</a>
-            <a href="#{{ path("app_home") }}" class="hover:text-gray-300"> Rejoindre</a>
         </nav>
+        {% if app.user %}
+            <a href="{{ path('app_message') }}"><img src="{{ asset('images/message.png') }}" alt="message" class="h-8 w-auto"></a>
+        {% endif %}
         <div>
             <img src="{{ asset ('images/user.png') }}" alt="user" class="h-8 w-auto">
         </div>
@@ -16,6 +18,7 @@
                 {% if app.user %}
                     <a href="{{ path('app_account') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Aperçu du compte</a>
                     <a href="{{ path('app_logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Se déconnecter</a>
+
                 {% else %}
                     <a href="{{ path('app_register') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">S'inscrire</a>
                     <a href="{{ path('app_login') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Se connecter</a>

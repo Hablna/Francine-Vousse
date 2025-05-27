@@ -59,9 +59,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Offre::class, mappedBy: 'id_user')]
     private Collection $offres;
 
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'destinataire')]
+    private Collection $envoyeLe;
+
     public function __construct()
     {
         $this->offres = new ArrayCollection();
+        $this->envoyeLe = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -235,6 +242,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($offre->getIdUser() === $this) {
                 $offre->setIdUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getEnvoyeLe(): Collection
+    {
+        return $this->envoyeLe;
+    }
+
+    public function addEnvoyeLe(Message $envoyeLe): static
+    {
+        if (!$this->envoyeLe->contains($envoyeLe)) {
+            $this->envoyeLe->add($envoyeLe);
+            $envoyeLe->setDestinataire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnvoyeLe(Message $envoyeLe): static
+    {
+        if ($this->envoyeLe->removeElement($envoyeLe)) {
+            // set the owning side to null (unless already changed)
+            if ($envoyeLe->getDestinataire() === $this) {
+                $envoyeLe->setDestinataire(null);
             }
         }
 
