@@ -16,7 +16,7 @@
                             {% else %}
                                 <img src="{{ asset('images/user.png') }}" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
                             {% endif %}
-                            </img>
+
                             <h1 class="text-xl ">{{ app.user.civility }} <strong>{{ app.user.prenom }}</strong> {{ app.user.name }}</h1>
                             <p class="text-gray-700">{{ app.user.username }}</p>
                             <div class="mt-6 flex flex-wrap gap-4 justify-center">
@@ -56,12 +56,16 @@
                                 <div class="flex flex-col items-center">
                                     <h3 class="font-bold mt-6 mb-4">Covoiturages effectués</h3>
                                     <div class="mb-6 ">
-                                        <span class="text-gray-700 font-bold">Web Developer</span>
+                                        {% if offresPassees is empty %}
+                                            <p class="text-gray-500">Aucun covoiturage effectué.</p>
+                                        {% endif %}
+                                        {% for past in offresPassees %}
+                                            <span class="text-gray-700 font-bold">{{ past.TitreSpectacle }}</span>
 
-                                        <p class="mt-2">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
-                                            .
-                                        </p>
+                                            <p class="mt-2">
+                                                <strong>Date</strong>: {{ past.horaire|date('d/m/Y H:i') }}<br>
+                                            </p>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <!--<div class="w-px bg-gray-300 h-full"></div>-->
@@ -69,12 +73,17 @@
                                 <!-- Colonne : À venir -->
                                 <div class="flex flex-col items-center">
                                     <h3 class="font-bold mt-6 mb-4">Covoiturages à venir</h3>
-                                    <div class="mb-6">
-                                        <span class="text-gray-700 font-bold">Web Developer</span>
-                                        <p class="mt-2">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
-                                            tortor ullamcorper
-                                        </p>
+                                    <div class="mb-6 ">
+                                        {% if offresFutures is empty %}
+                                            <p class="text-gray-500">Aucun covoiturage à venir.</p>
+                                        {% endif %}
+                                        {% for past in offresFutures %}
+                                            <li><span class="text-gray-700 font-bold">{{ past.TitreSpectacle }}</span></li>
+
+                                            <p class="mt-2">
+                                                <strong>Date</strong>: {{ past.horaire|date('d/m/Y H:i') }}<br>
+                                            </p>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -141,9 +150,7 @@
             </div>
         </div>
     </div>
-
-
-
+{% include 'partials/_footer.html.twig' %}
     <script>
         function openTab(evt, tabId) {
             const contents = document.querySelectorAll('.tab-content');

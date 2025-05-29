@@ -8,8 +8,9 @@
     <!-- Hero Section -->
     <section class="bg-gradient-to-r mt-10 from-blue-500 to-indigo-600 text-white py-16 px-6 text-center ">
         <div class="max-w-2xl mx-auto">
-            <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre site web</h1>
-            <p class="text-xl mb-8">Ici, les offres de covoiturage et de copiétonnage </p>
+            <h1 class="text-4xl font-bold mb-4">Bienvenue sur notre plateforme Francine Vousse !</h1>
+            <p class="text-xl mb-8">Ce site vous permet de proposer ou de rejoindre des offres de covoiturage ou de
+                copiétonnage à l'occasion d'événements culturels. </p>
         </div>
     </section>
 
@@ -26,7 +27,7 @@
                 </div>
             {% endif %}
             <div class="grid md:grid-cols-3 gap-8">
-               <!-- Affichage des offres -->
+                <!-- Affichage des offres -->
                 {% for offre in offres %}
                     <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition">
                         <h3 class="text-xl font-semibold mb-4">{{ offre.TitreSpectacle }}</h3>
@@ -34,34 +35,50 @@
                             <p>Date : {{ offre.horaire|date('d/m/Y H:i') }} </p>
                             <p>Depart : <strong>{{ offre.pointDepart }}</strong></p>
                         </div>
-                        <p><a href="#INSCRIRE" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"> s'inscrire</a></p>
+                        <!-- Bouton pour ouvrir le formulaire -->
+                        <button
+                                onclick="toggleForm('{{ offre.id }}-{{ offre.idUser.id }}')"
+                                class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
+                            Contacter
+                        </button>
+
+                        <!-- Formulaire masqué -->
+                        <div id="form-{{ offre.id }}-{{ offre.idUser.id }}" class="hidden mt-2">
+                            <form method="POST" action="{{ path('app_message', {
+                                'offreId': offre.id,
+                                'interlocuteurId': offre.idUser.id
+                            }) }}">
+                            <textarea name="contenu" rows="3" required placeholder="Votre message..." class="w-full border rounded px-3 py-2 mb-2 resize-none"></textarea>
+                                <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">
+                                    Envoyer
+                                </button>
+                            </form>
+                        </div>
+
                     </div>
                 {% endfor %}
             </div>
         </div>
     </section>
 
-    <!-- section annonce -->
-    <section id="annonce" class="bg-gray-50 py-16 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-3xl font-semibold mb-6">Annonce</h2>
-            <p class="text-xl max-w-3xl mx-auto mb-8">Francisse Vasse est imaginaire</p>
-            <a href="#contact"
-               class="bg-blue-600 text-white py-2 px-6 rounded-full font-semibold hover:bg-blue-700 transition">Nous
-                Contacter</a>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-16 px-6 bg-blue-600 text-white text-center">
         <h2 class="text-3xl font-semibold mb-4">Contactez-Nous</h2>
         <p class="text-xl mb-8">Si vous avez des questions ou si vous souhaitez en savoir plus sur nos services,
             contactez-nous dès aujourd'hui.</p>
-        <a href="mailto:contact@monsite.com"
+        <a href="mailto:h.halirounamanou@ecoles-epsi.net"
            class="bg-white text-blue-600 py-2 px-6 rounded-full font-semibold hover:bg-gray-100 transition">Envoyer un
             Email</a>
     </section>
 
+    <script>
+        function toggleForm(id) {
+            const form = document.getElementById('form-' + id);
+            form.classList.toggle('hidden');
+        }
+    </script>
+
     <!-- Footer -->
-    {% include 'partials/_footer.html.twig'%}
+    {% include 'partials/_footer.html.twig' %}
 {% endblock %}

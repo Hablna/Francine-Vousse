@@ -15,7 +15,6 @@ final class HomeController extends AbstractController
     {
         //obtenir les offres creer
         $offres = $offreRepository->findAll();
-
         return $this->render('home/index.html.twig', [
             'offres' => $offres,
         ]);

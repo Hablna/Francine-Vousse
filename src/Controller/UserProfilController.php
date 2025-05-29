@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ProfleType;
 use App\Form\RegistrationFormType;
+use App\Repository\OffreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -15,7 +16,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 final class UserProfilController extends AbstractController
 {
     #[Route('/user/profil', name: 'app_account')]
-    public function edit(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
+    public function edit(Request $request,
+                         EntityManagerInterface $em,
+                         SluggerInterface $slugger,
+                         OffreRepository $offreRepository
+    ): Response
     {
         $user = $this->getUser();
         if (!$user){
@@ -55,8 +60,14 @@ final class UserProfilController extends AbstractController
 
             return $this->redirectToRoute('app_account');
         }
+        //historique des offres
+        $offrePassees = $offreRepository->findPastOffers($user->getId());
+        $offreFutures = $offreRepository->findFutureOffers($user->getId());
+
         return $this->render('user_profil/index.html.twig', [
             'form' => $form->createView(),
+            'offresPassees' => $offrePassees,
+            'offresFutures' => $offreFutures,
         ]);
     }
 }
